@@ -6,5 +6,6 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -q -q && \
  apt-get install --yes --force-yes apt-utils && \
  echo 'UTC' > /etc/timezone && \
+ rm /etc/localtime && \
  dpkg-reconfigure tzdata && \
  apt-get upgrade --yes --force-yes
