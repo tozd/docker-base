@@ -8,4 +8,5 @@ RUN apt-get update -q -q && \
  echo 'UTC' > /etc/timezone && \
  rm /etc/localtime && \
  dpkg-reconfigure tzdata && \
- apt-get upgrade --yes --force-yes
+ apt-get upgrade --yes --force-yes && \
+ rm -f /etc/cron.weekly/fstrim
