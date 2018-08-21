@@ -1,5 +1,7 @@
 FROM alpine:3.8
 
+# /etc/localtime is already configured to UTC.
 RUN apk update && \ 
- echo 'UTC' > /etc/timezone && \
- apk add sudo zdata file bash
+ apk upgrade && \
+ apk add sudo file bash && \
+ echo 'UTC' > /etc/timezone
