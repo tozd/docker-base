@@ -7,3 +7,7 @@ Base Docker images used for other Docker images.
 * Image with `alpine-38` tag is based on Alpine 3.8
 
 It configures UTC as a container timezone.
+
+Docker image is daily rebuild to get any latest (security) updates.
+If you configure your image which extends this image to rebuild when
+the base image changes, you get those updates as well.
