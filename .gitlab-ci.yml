@@ -1,18 +1,27 @@
-image: docker:19
+image: alpine:3
 
-services:
-  - docker:19-dind
+stages:
+  - setup
+  - trigger
 
-build:
-  stage: build
+setup:
+  stage: setup
 
   script:
     - |
-      if [ -n "$DOCKER_HUB_PASSWORD" -a -n "$DOCKER_HUB_USERNAME" ]; then
-        echo "$DOCKER_HUB_PASSWORD" | docker login --username "$DOCKER_HUB_USERNAME" --password-stdin
-      fi
-    - docker build -t docker/base:ubuntu-bionic -f ubuntu-bionic.dockerfile .
-    - |
-      if [ -n "$DOCKER_HUB_PASSWORD" -a -n "$DOCKER_HUB_USERNAME" ]; then
-        docker push docker/base:ubuntu-bionic
-      fi
+      for FILE in *.dockerfile ; do
+        TAG="$(basename "$FILE" .dockerfile)"
+        sed "s/__TAG__/$TAG/g" .gitlab-ci-template.yml >> generated-gitlab-ci.yml
+      done
+
+  artifacts:
+    paths:
+      - generated-gitlab-ci.yml
+
+trigger:
+  stage: trigger
+
+  trigger:
+    include:
+      - artifact: generated-gitlab-ci.yml
+        job: setup
