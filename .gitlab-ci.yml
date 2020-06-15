@@ -1,0 +1,18 @@
+image: docker:19
+
+services:
+  - docker:19-dind
+
+build:
+  stage: build
+
+  script:
+    - |
+      if [ -n "$DOCKER_HUB_PASSWORD" -a -n "$DOCKER_HUB_USERNAME" ]; then
+        echo "$DOCKER_HUB_PASSWORD" | docker login --username "$DOCKER_HUB_USERNAME" --password-stdin
+      fi
+    - docker build -t docker/base:ubuntu-bionic -f ubuntu-bionic.dockerfile .
+    - |
+      if [ -n "$DOCKER_HUB_PASSWORD" -a -n "$DOCKER_HUB_USERNAME" ]; then
+        docker push docker/base:ubuntu-bionic
+      fi
