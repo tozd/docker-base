@@ -1,3 +1,5 @@
+# tozd/base
+
 Base Docker images used for other Docker images.
 
 * Image with `ubuntu-trusty` tag is based on Ubuntu 14.04 LTS (Trusty)
@@ -9,5 +11,5 @@ Base Docker images used for other Docker images.
 It configures UTC as a container timezone.
 
 Docker images are rebuild daily to get any latest (security) updates.
-If you configure your image (which extends this image) to rebuild when
-the base image changes, you get those updates as well.
+If you do the same in your image (which extends this image), you will
+get those updates as well.
