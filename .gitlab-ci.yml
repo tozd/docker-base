@@ -22,6 +22,7 @@ trigger:
   stage: trigger
 
   trigger:
+    strategy: depend
     include:
       - artifact: generated-gitlab-ci.yml
         job: setup

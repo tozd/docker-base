@@ -11,8 +11,8 @@ __TAG__:
       if [ -n "$DOCKER_HUB_PASSWORD" -a -n "$DOCKER_HUB_USERNAME" ]; then
         echo "$DOCKER_HUB_PASSWORD" | docker login --username "$DOCKER_HUB_USERNAME" --password-stdin
       fi
-    - docker build --pull -t "$CI_PROJECT_NAME:__TAG__" -f __TAG__.dockerfile .
+    - docker build --pull -t "tozd/$CI_PROJECT_NAME:__TAG__" -f __TAG__.dockerfile .
     - |
       if [ -n "$DOCKER_HUB_PASSWORD" -a -n "$DOCKER_HUB_USERNAME" ]; then
-        docker push "$CI_PROJECT_NAME:__TAG__"
+        docker push "tozd/$CI_PROJECT_NAME:__TAG__"
       fi
