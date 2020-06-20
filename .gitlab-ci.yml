@@ -9,6 +9,9 @@ setup:
 
   script:
     - |
+      if [ ! -f .gitlab-ci-template.yml ]; then
+        wget https://gitlab.com/tozd/docker/base/-/blob/master/.gitlab-ci-template.yml
+      fi
       for FILE in *.dockerfile ; do
         TAG="$(basename "$FILE" .dockerfile)"
         sed "s/__TAG__/$TAG/g" .gitlab-ci-template.yml >> generated-gitlab-ci.yml
