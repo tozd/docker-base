@@ -10,7 +10,6 @@ setup:
   script:
     - |
       if [ ! -f .gitlab-ci-template.yml ]; then
-        which wget || exit -1
         wget -O .gitlab-ci-template.yml https://gitlab.com/tozd/docker/base/-/raw/master/.gitlab-ci-template.yml
       fi
       for FILE in *.dockerfile ; do
