@@ -1,4 +1,4 @@
-__TAG__:
+"__TAG__":
   stage: build
 
   image: docker:19
