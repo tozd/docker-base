@@ -12,6 +12,7 @@ Base Docker images used for other Docker images.
 
 It configures UTC as a container timezone.
 
-Docker images are rebuild daily to get any latest (security) updates.
+Docker images are rebuild daily to get any latest (security) updates
+from the underlying distribution.
 If you do the same in your image (which extends this image), you will
 get those updates as well.
