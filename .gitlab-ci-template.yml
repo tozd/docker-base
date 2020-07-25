@@ -17,7 +17,7 @@
       fi
     - docker build --pull -t "tozd/$CI_PROJECT_NAME:__TAG__" -f __TAG__.dockerfile .
     - |
-      if [ -n "$DOCKER_HUB_PASSWORD" -a -n "$DOCKER_HUB_USERNAME" ]; then
+      if [ -n "$DOCKER_HUB_PASSWORD" -a -n "$DOCKER_HUB_USERNAME" -a "${CI_COMMIT_REF_NAME}" = master ]; then
         docker push "tozd/$CI_PROJECT_NAME:__TAG__"
         docker pushrm --debug "tozd/$CI_PROJECT_NAME"
       fi
