@@ -20,4 +20,10 @@
       if [ -n "$DOCKER_HUB_PASSWORD" -a -n "$DOCKER_HUB_USERNAME" -a "${CI_COMMIT_REF_NAME}" = master ]; then
         docker push "tozd/$CI_PROJECT_NAME:__TAG__"
         docker pushrm --debug "tozd/$CI_PROJECT_NAME"
+      else
+        docker save "tozd/$CI_PROJECT_NAME:__TAG__" | gzip > __TAG__.tgz
       fi
+
+  artifacts:
+      paths:
+          - __TAG__.tgz
