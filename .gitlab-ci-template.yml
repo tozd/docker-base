@@ -13,7 +13,7 @@
         mkdir -p "$HOME/.docker/cli-plugins"
         wget https://github.com/christian-korneck/docker-pushrm/releases/download/v1.0.1/docker-pushrm_linux_amd64 -O "$HOME/.docker/cli-plugins/docker-pushrm"
         chmod +rx "$HOME/.docker/cli-plugins/docker-pushrm"
-        echo "90e9e7a29f14ee215ead57ac51ae307d05e5780c73b031ea75834cf3041012cf  $HOME/.docker/cli-plugins/docker-pushrm" | sha256sum -c -w
+        echo "90e9e7a29f14ee215ead57ac51ae307d05e5780c73b031ea75834cf3041012cf $HOME/.docker/cli-plugins/docker-pushrm" | sha256sum -c -w
       fi
     - docker build --pull -t "tozd/$CI_PROJECT_NAME:__TAG__" -f __TAG__.dockerfile .
     - |
