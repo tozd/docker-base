@@ -10,7 +10,7 @@ Base Docker images used for other Docker images.
 * Image with `ubuntu-focal` tag is based on Ubuntu 20.04 LTS (Focal)
 * Image with `alpine-38` tag is based on Alpine 3.8
 
-It configures UTC as a container timezone.
+It configures UTC as a container timezone and `en_US.UTF-8` for container's locale.
 
 All images are rebuild daily to get any latest (security) updates from
 the underlying distribution.
