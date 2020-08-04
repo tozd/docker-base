@@ -25,5 +25,5 @@
       fi
 
   artifacts:
-      paths:
-          - __TAG__.tgz
+    paths:
+      - __TAG__.tgz
