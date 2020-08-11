@@ -9,7 +9,7 @@ setup:
 
   script:
     - |
-      set +e
+      set -o errexit
       if [ ! -f .gitlab-ci-template.yml ]; then
         wget -O .gitlab-ci-template.yml https://gitlab.com/tozd/docker/base/-/raw/master/.gitlab-ci-template.yml
       fi
