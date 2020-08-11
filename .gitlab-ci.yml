@@ -14,7 +14,7 @@ setup:
       fi
       for FILE in *.dockerfile ; do
         TAG="$(basename "$FILE" .dockerfile)"
-        sed "s/__TAG__/$TAG/g" .gitlab-ci-template.yml >> generated-gitlab-ci.yml
+        sed -e "s/__TAG__/$TAG/g" -e "s/__FILE__/$FILE/g" -e "s/__BUILD_ARGS__//g" .gitlab-ci-template.yml >> generated-gitlab-ci.yml
       done
 
   artifacts:
