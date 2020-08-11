@@ -14,8 +14,8 @@ setup:
         wget -O .gitlab-ci-template.yml https://gitlab.com/tozd/docker/base/-/raw/master/.gitlab-ci-template.yml
       fi
       for FILE in *.dockerfile ; do
-        TAG="$(basename "$FILE" .dockerfile)"
-        sed -e "s/__TAG__/$TAG/g" -e "s/__FILE__/$FILE/g" -e "s/__BUILD_ARGS__//g" .gitlab-ci-template.yml >> generated-gitlab-ci.yml
+        TAG="$(basename "${FILE}" .dockerfile)"
+        sed -e "s/__TAG__/${TAG}/g" -e "s/__FILE__/${FILE}/g" -e "s/__BUILD_ARGS__//g" .gitlab-ci-template.yml >> generated-gitlab-ci.yml
       done
 
   artifacts:
