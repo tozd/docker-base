@@ -8,6 +8,7 @@
 
   script:
     - |
+      set -o errexit
       if [ -n "$DOCKER_HUB_PASSWORD" -a -n "$DOCKER_HUB_USERNAME" -a "${CI_COMMIT_REF_NAME}" = master ]; then
         echo "$DOCKER_HUB_PASSWORD" | docker login --username "$DOCKER_HUB_USERNAME" --password-stdin
         mkdir -p "$HOME/.docker/cli-plugins"
@@ -17,6 +18,7 @@
       fi
     - docker build --pull __BUILD_ARGS__ -t "tozd/$CI_PROJECT_NAME:__TAG__" -f "__FILE__" .
     - |
+      set -o errexit
       if [ -n "$DOCKER_HUB_PASSWORD" -a -n "$DOCKER_HUB_USERNAME" -a "${CI_COMMIT_REF_NAME}" = master ]; then
         docker push "tozd/$CI_PROJECT_NAME:__TAG__"
         docker pushrm --debug "tozd/$CI_PROJECT_NAME"
