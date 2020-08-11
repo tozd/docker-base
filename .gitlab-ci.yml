@@ -9,6 +9,7 @@ setup:
 
   script:
     - |
+      set +e
       if [ ! -f .gitlab-ci-template.yml ]; then
         wget -O .gitlab-ci-template.yml https://gitlab.com/tozd/docker/base/-/raw/master/.gitlab-ci-template.yml
       fi
@@ -19,6 +20,7 @@ setup:
 
   artifacts:
     paths:
+      - .gitlab-ci-template.yml
       - generated-gitlab-ci.yml
 
 trigger:
