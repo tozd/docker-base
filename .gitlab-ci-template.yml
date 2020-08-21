@@ -8,6 +8,7 @@
 
   # Workaround for: https://gitlab.com/gitlab-org/gitlab-runner/-/issues/1736
   before_script:
+    - apk add --no-cache git
     - git checkout-index --all --prefix umask-fix-checkout/
     - cd umask-fix-checkout/
 
