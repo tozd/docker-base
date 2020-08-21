@@ -6,6 +6,11 @@
   services:
     - docker:19-dind
 
+  # Workaround for: https://gitlab.com/gitlab-org/gitlab-runner/-/issues/1736
+  before_script:
+    - git checkout-index --all --prefix umask-fix-checkout/
+    - cd umask-fix-checkout/
+
   script:
     - |
       set -o errexit
