@@ -31,7 +31,9 @@
     - docker build --pull __BUILD_ARGS__ -t "$CI_REGISTRY_IMAGE:__TAG__" -f "__FILE__" .
     - |
       set -o errexit
-      docker push "$CI_REGISTRY_IMAGE:__TAG__"
+      if [ "${CI_COMMIT_REF_NAME}" = master ]; then
+        docker push "$CI_REGISTRY_IMAGE:__TAG__"
+      fi
       if [ -n "$DOCKER_HUB_PASSWORD" -a -n "$DOCKER_HUB_USERNAME" -a "${CI_COMMIT_REF_NAME}" = master ]; then
         docker tag "$CI_REGISTRY_IMAGE:__TAG__" "tozd/$CI_PROJECT_NAME:__TAG__"
         docker push "tozd/$CI_PROJECT_NAME:__TAG__"
