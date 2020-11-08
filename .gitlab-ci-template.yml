@@ -33,9 +33,15 @@
       set -o errexit
       if [ "${CI_COMMIT_REF_NAME}" = master ]; then
         docker push "$CI_REGISTRY_IMAGE:__TAG__"
+      else
+        docker save "$CI_REGISTRY_IMAGE:__TAG__" | gzip > __TAG__.tgz
       fi
       if [ -n "$DOCKER_HUB_PASSWORD" -a -n "$DOCKER_HUB_USERNAME" -a "${CI_COMMIT_REF_NAME}" = master ]; then
         docker tag "$CI_REGISTRY_IMAGE:__TAG__" "tozd/$CI_PROJECT_NAME:__TAG__"
         docker push "tozd/$CI_PROJECT_NAME:__TAG__"
         docker pushrm --debug "tozd/$CI_PROJECT_NAME"
       fi
+
+  artifacts:
+    paths:
+      - __TAG__.tgz
