@@ -22,14 +22,14 @@
         chmod +rx "$HOME/.docker/cli-plugins/docker-pushrm"
         echo "90e9e7a29f14ee215ead57ac51ae307d05e5780c73b031ea75834cf3041012cf  $HOME/.docker/cli-plugins/docker-pushrm" | sha256sum -c -w
       fi
-    - docker build --pull __BUILD_ARGS__ -t "tozd/$CI_PROJECT_NAME:__TAG__" -f "__FILE__" .
+    - docker build --pull __BUILD_ARGS__ -t "$CI_REGISTRY_IMAGE:__TAG__" -f "__FILE__" .
     - |
       set -o errexit
+      docker push "$CI_REGISTRY_IMAGE:__TAG__"
       if [ -n "$DOCKER_HUB_PASSWORD" -a -n "$DOCKER_HUB_USERNAME" -a "${CI_COMMIT_REF_NAME}" = master ]; then
+        docker tag "$CI_REGISTRY_IMAGE:__TAG__" "tozd/$CI_PROJECT_NAME:__TAG__"
         docker push "tozd/$CI_PROJECT_NAME:__TAG__"
         docker pushrm --debug "tozd/$CI_PROJECT_NAME"
-      else
-        docker save "tozd/$CI_PROJECT_NAME:__TAG__" | gzip > __TAG__.tgz
       fi
 
   artifacts:

@@ -2,6 +2,13 @@
 
 <https://gitlab.com/tozd/docker/base>
 
+Available as:
+
+* [`tozd/base`](https://hub.docker.com/r/tozd/base)
+* `registry.gitlab.com/tozd/docker/base`
+
+## Description
+
 Base Docker images used for other Docker images.
 
 * Image with `ubuntu-trusty` tag is based on Ubuntu 14.04 LTS (Trusty)
