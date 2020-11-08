@@ -6,8 +6,14 @@
   services:
     - docker:19-dind
 
-  # Workaround for: https://gitlab.com/gitlab-org/gitlab-runner/-/issues/1736
+  variables:
+    DOCKER_DRIVER: overlay2
+    DOCKER_HOST: tcp://docker:2375
+
   before_script:
+    - docker info
+    - docker login -u gitlab-ci-token -p "$CI_JOB_TOKEN" "$CI_REGISTRY"
+    # Workaround for: https://gitlab.com/gitlab-org/gitlab-runner/-/issues/1736
     - apk add --no-cache git
     - git checkout-index --all --prefix umask-fix-checkout/
     - cd umask-fix-checkout/
@@ -31,7 +37,3 @@
         docker push "tozd/$CI_PROJECT_NAME:__TAG__"
         docker pushrm --debug "tozd/$CI_PROJECT_NAME"
       fi
-
-  artifacts:
-    paths:
-      - __TAG__.tgz
