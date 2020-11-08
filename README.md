@@ -5,7 +5,7 @@
 Available as:
 
 * [`tozd/base`](https://hub.docker.com/r/tozd/base)
-* `registry.gitlab.com/tozd/docker/base`
+* [`registry.gitlab.com/tozd/docker/base`](https://gitlab.com/tozd/docker/base/container_registry)
 
 ## Description
 
