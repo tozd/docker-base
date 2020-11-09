@@ -1,23 +1,6 @@
 "__TAG__":
   stage: build
 
-  image: docker:19
-
-  services:
-    - docker:19-dind
-
-  variables:
-    DOCKER_DRIVER: overlay2
-    DOCKER_HOST: tcp://docker:2375
-
-  before_script:
-    - docker info
-    - echo "$CI_JOB_TOKEN" | docker login --username gitlab-ci-token --password-stdin "$CI_REGISTRY"
-    # Workaround for: https://gitlab.com/gitlab-org/gitlab-runner/-/issues/1736
-    - apk add --no-cache git
-    - git checkout-index --all --prefix umask-fix-checkout/
-    - cd umask-fix-checkout/
-
   script:
     - |
       set -o errexit

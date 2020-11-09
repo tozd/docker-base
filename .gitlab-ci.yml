@@ -10,17 +10,22 @@ setup:
   script:
     - |
       set -o errexit
-      if [ ! -f .gitlab-ci-template.yml ]; then
-        wget -O .gitlab-ci-template.yml https://gitlab.com/tozd/docker/base/-/raw/master/.gitlab-ci-template.yml
+      if [ ! -f .gitlab-ci-template-header.yml ]; then
+        wget -O .gitlab-ci-template-header.yml https://gitlab.com/tozd/docker/base/-/raw/master/.gitlab-ci-template-header.yml
       fi
+      if [ ! -f .gitlab-ci-template-entry.yml ]; then
+        wget -O .gitlab-ci-template-entry.yml https://gitlab.com/tozd/docker/base/-/raw/master/.gitlab-ci-template-entry.yml
+      fi
+      cat .gitlab-ci-template-header.yml > generated-gitlab-ci.yml
       for FILE in *.dockerfile ; do
         TAG="$(basename "${FILE}" .dockerfile)"
-        sed -e "s/__TAG__/${TAG}/g" -e "s/__FILE__/${FILE}/g" -e "s/__BUILD_ARGS__//g" .gitlab-ci-template.yml >> generated-gitlab-ci.yml
+        sed -e "s/__TAG__/${TAG}/g" -e "s/__FILE__/${FILE}/g" -e "s/__BUILD_ARGS__//g" .gitlab-ci-template-entry.yml >> generated-gitlab-ci.yml
       done
 
   artifacts:
     paths:
-      - .gitlab-ci-template.yml
+      - .gitlab-ci-template-header.yml
+      - .gitlab-ci-template-entry.yml
       - generated-gitlab-ci.yml
 
 trigger:
