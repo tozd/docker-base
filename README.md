@@ -18,7 +18,6 @@ Base Docker images used for other Docker images.
 * Image with `alpine-38` tag is based on Alpine 3.8
 * Image with `alpine-310` tag is based on Alpine 3.10
 * Image with `alpine-312` tag is based on Alpine 3.12
-* Image with `alpine-314` tag is based on Alpine 3.14
 
 It configures UTC as a container timezone and `en_US.UTF-8` for container's locale.
 
