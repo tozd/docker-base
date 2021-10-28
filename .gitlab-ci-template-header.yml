@@ -13,3 +13,4 @@ variables:
   DOCKER_HOST: tcp://docker:2375
   # Workaround for: https://gitlab.com/gitlab-org/gitlab-runner/-/issues/1736
   CI_PRE_CLONE_SCRIPT: "umask 022"
+  GIT_SUBMODULE_STRATEGY: recursive
