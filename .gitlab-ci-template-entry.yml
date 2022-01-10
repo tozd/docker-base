@@ -2,7 +2,8 @@
   stage: build
 
   variables:
-    BUILD_ARGS: "__BUILD_ARGS__"
+    BUILD_ARGS: |
+      __BUILD_ARGS__
     TAG: "__TAG__"
     FILE: "__FILE__"
 
