@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM alpine:3.14
 
 # /etc/localtime is already configured to UTC.
 RUN apk update && \
