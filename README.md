@@ -7,20 +7,22 @@ Available as:
 - [`tozd/base`](https://hub.docker.com/r/tozd/base)
 - [`registry.gitlab.com/tozd/docker/base`](https://gitlab.com/tozd/docker/base/container_registry)
 
+## Tags
+
+- `ubuntu-trusty`: Ubuntu 14.04 LTS (Trusty)
+- `ubuntu-xenial`: Ubuntu 16.04 LTS (Xenial)
+- `ubuntu-bionic`: Ubuntu 18.04 LTS (Bionic)
+- `ubuntu-focal`: Ubuntu 20.04 LTS (Focal)
+- `ubuntu-jammy`: Ubuntu 22.04 LTS (Jammy)
+- `alpine-38`: Alpine 3.8
+- `alpine-310`: Alpine 3.10
+- `alpine-312`: Alpine 3.12
+- `alpine-314`: Alpine 3.14
+- `alpine-316`: Alpine 3.16
+
 ## Description
 
 Base Docker images used for other Docker images.
-
-- Image with `ubuntu-trusty` tag is based on Ubuntu 14.04 LTS (Trusty)
-- Image with `ubuntu-xenial` tag is based on Ubuntu 16.04 LTS (Xenial)
-- Image with `ubuntu-bionic` tag is based on Ubuntu 18.04 LTS (Bionic)
-- Image with `ubuntu-focal` tag is based on Ubuntu 20.04 LTS (Focal)
-- Image with `ubuntu-jammy` tag is based on Ubuntu 22.04 LTS (Jammy)
-- Image with `alpine-38` tag is based on Alpine 3.8
-- Image with `alpine-310` tag is based on Alpine 3.10
-- Image with `alpine-312` tag is based on Alpine 3.12
-- Image with `alpine-314` tag is based on Alpine 3.14
-- Image with `alpine-316` tag is based on Alpine 3.16
 
 It configures UTC as a container timezone and `en_US.UTF-8` for container's locale.
 
