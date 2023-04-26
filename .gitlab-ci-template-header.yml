@@ -1,8 +1,8 @@
 default:
-  image: docker:19
+  image: docker:23
 
   services:
-    - docker:19-dind
+    - docker:23-dind
 
   before_script:
     - docker info
