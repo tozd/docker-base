@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 commands_and_expected_outputs=(
   'date +"%Z"#UTC'
