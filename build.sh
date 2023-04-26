@@ -11,7 +11,7 @@ if [ -n "${DOCKER_HUB_PASSWORD}" -a -n "${DOCKER_HUB_USERNAME}" -a "${CI_COMMIT_
 fi
 docker build --pull ${BUILD_ARGS} -t "${CI_REGISTRY_IMAGE}:${TAG}" -f "${FILE}" .
 if [ -e test.sh ]; then
-  test.sh
+  ./test.sh
 fi
 if [ "${CI_COMMIT_REF_NAME}" = master ]; then
   docker push "${CI_REGISTRY_IMAGE}:${TAG}"
