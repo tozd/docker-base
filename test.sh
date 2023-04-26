@@ -1,17 +1,21 @@
 #!/bin/sh
 
-commands_and_expected_outputs=(
-  'date +"%Z"#UTC'
-  'locale | awk -F= "/LC_COLLATE/{print \$2}" | tr -d \"#en_US.UTF-8'
-)
+commands_and_expected_outputs='
+  date +"%Z"#UTC
+  locale | awk -F= "/LC_COLLATE/{print \$2}" | tr -d \"#en_US.UTF-8
+'
 
-for command_and_output in "${commands_and_expected_outputs[@]}"; do
+# Split by newline.
+IFS="
+"
+for command_and_output in $commands_and_expected_outputs; do
   # Split the command and expected output using the "#" separator.
-  IFS="#" read -r command expected_output <<< "$command_and_output"
+  command=$(echo "$command_and_output" | cut -d "#" -f 1)
+  expected_output=$(echo "$command_and_output" | cut -d "#" -f 2)
 
   output=$(eval "docker run --rm -t "${CI_REGISTRY_IMAGE}:${TAG}" $command")
 
-  if [[ $? -ne 0 ]]; then
+  if [ $? -ne 0 ]; then
     echo "Error: \"$command\" failed"
     exit 1
   fi
@@ -19,7 +23,7 @@ for command_and_output in "${commands_and_expected_outputs[@]}"; do
   # Remove any trailing whitespace characters from the output.
   output=$(echo "$output" | sed 's/[[:space:]]*$//')
 
-  if [[ "$output" != "$expected_output" ]]; then
+  if [ "$output" != "$expected_output" ]; then
     echo "Error: Output for \"$command\" does not match expected output"
     echo "Actual output: $output"
     echo "Expected output: $expected_output"
