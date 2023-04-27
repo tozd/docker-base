@@ -11,6 +11,6 @@ default:
 variables:
   DOCKER_DRIVER: overlay2
   DOCKER_HOST: tcp://docker:2375
-  # Workaround for: https://gitlab.com/gitlab-org/gitlab-runner/-/issues/1736
-  CI_PRE_CLONE_SCRIPT: "umask 022"
+  # Disable umask 0000. See: https://gitlab.com/gitlab-org/gitlab-runner/-/issues/1736
+  FF_DISABLE_UMASK_FOR_DOCKER_EXECUTOR: 1
   GIT_SUBMODULE_STRATEGY: recursive
