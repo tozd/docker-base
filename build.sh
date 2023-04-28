@@ -1,4 +1,6 @@
-#!/bin/sh -s -eo pipefail
+#!/bin/sh
+
+set -e
 
 if [ -n "${DOCKER_HUB_PASSWORD}" -a -n "${DOCKER_HUB_USERNAME}" -a "${CI_COMMIT_REF_NAME}" = master ]; then
   echo "${DOCKER_HUB_PASSWORD}" | docker login --username "${DOCKER_HUB_USERNAME}" --password-stdin

@@ -8,7 +8,7 @@
     FILE: "__FILE__"
 
   script:
-    - wget -O - https://gitlab.com/tozd/docker/base/-/raw/master/build.sh | sh -s -eo pipefail
+    - wget -O - https://gitlab.com/tozd/docker/base/-/raw/master/build.sh | sh
 
   artifacts:
     paths:
