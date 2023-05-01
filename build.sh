@@ -14,7 +14,7 @@ if [ -e test.sh ]; then
   ./test.sh
 fi
 if [ "${CI_COMMIT_REF_NAME}" = master ]; then
-  time timeout -k 10s 5m docker push "${CI_REGISTRY_IMAGE}:${TAG}"
+  time timeout -k 10s 10m docker push "${CI_REGISTRY_IMAGE}:${TAG}"
 else
   time docker save "${CI_REGISTRY_IMAGE}:${TAG}" | gzip > "${TAG}.tgz"
 fi
