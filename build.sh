@@ -14,12 +14,12 @@ if [ -e test.sh ]; then
   ./test.sh
 fi
 if [ "${CI_COMMIT_REF_NAME}" = master ]; then
-  time docker push "${CI_REGISTRY_IMAGE}:${TAG}"
+  time timeout -k 10s 5m docker push "${CI_REGISTRY_IMAGE}:${TAG}"
 else
   time docker save "${CI_REGISTRY_IMAGE}:${TAG}" | gzip > "${TAG}.tgz"
 fi
 if [ -n "${DOCKER_HUB_PASSWORD}" -a -n "${DOCKER_HUB_USERNAME}" -a "${CI_COMMIT_REF_NAME}" = master ]; then
   docker tag "${CI_REGISTRY_IMAGE}:${TAG}" "tozd/${CI_PROJECT_NAME}:${TAG}"
-  time docker push "tozd/${CI_PROJECT_NAME}:${TAG}"
+  time timeout -k 10s 10m docker push "tozd/${CI_PROJECT_NAME}:${TAG}"
   docker pushrm --debug "tozd/${CI_PROJECT_NAME}"
 fi
