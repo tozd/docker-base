@@ -30,3 +30,8 @@ All images are rebuild daily to get any latest (security) updates from
 the underlying distribution.
 If you do the same in your image (which extends any of these images), you will
 get those updates as well.
+
+## GitHub mirror
+
+There is also a [read-only GitHub mirror available](https://github.com/tozd/docker-base),
+if you need to fork the project there.
