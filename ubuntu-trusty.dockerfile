@@ -13,7 +13,7 @@ RUN apt-get update -q -q && \
   echo 'UTC' > /etc/timezone && \
   dpkg-reconfigure tzdata && \
   apt-get upgrade --yes --force-yes && \
-  rm -f /etc/cron.weekly/fstrim && \
+  rm -f /etc/cron.*/* && \
   apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ~/.cache ~/.npm
 
 ENV LC_ALL en_US.UTF-8
