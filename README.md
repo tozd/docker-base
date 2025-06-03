@@ -20,6 +20,9 @@ Available as:
 - `alpine-312`: Alpine 3.12
 - `alpine-314`: Alpine 3.14
 - `alpine-316`: Alpine 3.16
+- `alpine-318`: Alpine 3.18
+- `alpine-320`: Alpine 3.20
+- `alpine-322`: Alpine 3.22
 
 ## Description
 
