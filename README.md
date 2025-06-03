@@ -14,6 +14,7 @@ Available as:
 - `ubuntu-bionic`: Ubuntu 18.04 LTS (Bionic)
 - `ubuntu-focal`: Ubuntu 20.04 LTS (Focal)
 - `ubuntu-jammy`: Ubuntu 22.04 LTS (Jammy)
+- `ubuntu-noble`: Ubuntu 24.04 LTS (Noble)
 - `alpine-38`: Alpine 3.8
 - `alpine-310`: Alpine 3.10
 - `alpine-312`: Alpine 3.12
