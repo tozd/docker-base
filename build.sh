@@ -21,5 +21,6 @@ fi
 if [ -n "${DOCKER_HUB_PASSWORD}" -a -n "${DOCKER_HUB_USERNAME}" -a "${CI_COMMIT_REF_NAME}" = master ]; then
   docker tag "${CI_REGISTRY_IMAGE}:${TAG}" "tozd/${CI_PROJECT_NAME}:${TAG}"
   time timeout -k 10s 10m docker push "tozd/${CI_PROJECT_NAME}:${TAG}"
-  docker pushrm --debug "tozd/${CI_PROJECT_NAME}"
+  description=$(wget -q -O - "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}" | jq -r '.description')
+  docker pushrm --short "$description" --debug "tozd/${CI_PROJECT_NAME}"
 fi

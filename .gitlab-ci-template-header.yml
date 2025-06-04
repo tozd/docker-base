@@ -7,6 +7,7 @@ default:
   before_script:
     - docker info
     - echo "$CI_JOB_TOKEN" | docker login --username gitlab-ci-token --password-stdin "$CI_REGISTRY"
+    - apk --update add jq
 
   retry: 1
 
