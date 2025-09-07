@@ -24,6 +24,11 @@ Available as:
 - `alpine-320`: Alpine 3.20
 - `alpine-322`: Alpine 3.22
 
+## Architectures
+
+- `amd64`
+- `arm64`
+
 ## Description
 
 Base Docker images used for other Docker images.

@@ -24,7 +24,7 @@ if [ -n "${DOCKER_HUB_PASSWORD}" -a -n "${DOCKER_HUB_USERNAME}" -a "${CI_COMMIT_
   chmod +rx "$HOME/.docker/cli-plugins/docker-pushrm"
   echo "616339685a474cf5739f4bc5961cdc822e32de2a3c71621a7de32001257da292  $HOME/.docker/cli-plugins/docker-pushrm" | sha256sum -c -w
 fi
-time docker buildx $platform_arg --pull ${BUILD_ARGS} -t "${CI_REGISTRY_IMAGE}:${TAG}" -f "${FILE}" .
+time docker buildx build $platform_arg --pull ${BUILD_ARGS} -t "${CI_REGISTRY_IMAGE}:${TAG}" -f "${FILE}" .
 if [ -e test.sh ]; then
   ./test.sh
 fi
