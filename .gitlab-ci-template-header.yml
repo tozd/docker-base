@@ -1,5 +1,5 @@
 default:
-  image: docker:23-cli
+  image: docker:28-cli
 
   services:
     - name: docker:28-dind
