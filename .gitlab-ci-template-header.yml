@@ -10,14 +10,11 @@ default:
   before_script:
     - docker info
     - echo "$CI_JOB_TOKEN" | docker login --username gitlab-ci-token --password-stdin "$CI_REGISTRY"
-    - docker buildx create --use --driver docker-container --name builder
-    - docker buildx inspect --bootstrap
     - apk --update add jq
 
   retry: 1
 
 variables:
-  DOCKER_DRIVER: overlay2
   DOCKER_HOST: tcp://docker:2375
   FF_NETWORK_PER_BUILD: 1
   # Disable umask 0000. See: https://gitlab.com/gitlab-org/gitlab-runner/-/issues/1736
