@@ -8,7 +8,7 @@ RUN apt-get update -q -q && \
   mv /var/lib/dpkg/info/libc-bin.* /tmp/ && \
   dpkg --remove --force-remove-reinstreq,depends,remove-protected,remove-essential libc-bin && \
   dpkg --purge libc-bin && \
-  apt-get install --yes --force-yes  install libc-bin && \
+  apt-get install --yes --force-yes libc-bin && \
   mv /tmp/libc-bin.* /var/lib/dpkg/info/ && \
   apt-get install --yes --force-yes apt-utils tzdata locales file sudo gnupg && \
   locale-gen --no-purge en_US.UTF-8 && \
