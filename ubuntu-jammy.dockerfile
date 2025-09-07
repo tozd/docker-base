@@ -3,10 +3,13 @@ FROM ubuntu:jammy
 ENV DEBIAN_FRONTEND noninteractive
 
 # apt-utils seems missing and warnings are shown, so we install it.
-# We have to fix ldconfig for libc-bin not to segfault while building Docker image on arm64 in QEMU.
+# We have to fix libc-bin not to segfault while building Docker image on arm64 in QEMU.
 RUN apt-get update -q -q && \
-  rm /var/cache/ldconfig/aux-cache && \
-  /sbin/ldconfig.real && \
+  mv /var/lib/dpkg/info/libc-bin.* /tmp/ && /
+  dpkg --remove --force-remove-reinstreq libc-bin && \
+  dpkg --purge libc-bin && \
+  apt-get install --yes --force-yes  install libc-bin && \
+  mv /tmp/libc-bin.* /var/lib/dpkg/info/ && \
   apt-get install --yes --force-yes apt-utils tzdata locales file sudo gnupg && \
   locale-gen --no-purge en_US.UTF-8 && \
   update-locale LANG=en_US.UTF-8 && \
