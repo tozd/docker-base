@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # apt-utils seems missing and warnings are shown, so we install it.
 # We have to fix libc-bin not to segfault while building Docker image on arm64 in QEMU.
 RUN apt-get update -q -q && \
-  mv /var/lib/dpkg/info/libc-bin.* /tmp/ && /
+  mv /var/lib/dpkg/info/libc-bin.* /tmp/ && \
   dpkg --remove --force-remove-reinstreq libc-bin && \
   dpkg --purge libc-bin && \
   apt-get install --yes --force-yes  install libc-bin && \
