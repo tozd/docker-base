@@ -2,6 +2,21 @@
 
 set -e
 
+platforms=""
+if [ -e amd64 ]; then
+    [ -n "$platforms" ] && platforms="$platforms,"
+    platforms="${platforms}linux/amd64"
+fi
+if [ -e arm64 ]; then
+    [ -n "$platforms" ] && platforms="$platforms,"
+    platforms="${platforms}linux/arm64"
+fi
+if [ -n "$platforms" ]; then
+    platform_arg="--platform $platforms"
+else
+    platform_arg=""
+fi
+
 if [ -n "${DOCKER_HUB_PASSWORD}" -a -n "${DOCKER_HUB_USERNAME}" -a "${CI_COMMIT_REF_NAME}" = master ]; then
   echo "${DOCKER_HUB_PASSWORD}" | docker login --username "${DOCKER_HUB_USERNAME}" --password-stdin
   mkdir -p "$HOME/.docker/cli-plugins"
@@ -9,7 +24,7 @@ if [ -n "${DOCKER_HUB_PASSWORD}" -a -n "${DOCKER_HUB_USERNAME}" -a "${CI_COMMIT_
   chmod +rx "$HOME/.docker/cli-plugins/docker-pushrm"
   echo "616339685a474cf5739f4bc5961cdc822e32de2a3c71621a7de32001257da292  $HOME/.docker/cli-plugins/docker-pushrm" | sha256sum -c -w
 fi
-time docker build --pull ${BUILD_ARGS} -t "${CI_REGISTRY_IMAGE}:${TAG}" -f "${FILE}" .
+time docker buildx $platform_arg --pull ${BUILD_ARGS} -t "${CI_REGISTRY_IMAGE}:${TAG}" -f "${FILE}" .
 if [ -e test.sh ]; then
   ./test.sh
 fi

@@ -7,6 +7,8 @@ default:
   before_script:
     - docker info
     - echo "$CI_JOB_TOKEN" | docker login --username gitlab-ci-token --password-stdin "$CI_REGISTRY"
+    - docker buildx create --use --driver docker-container --name builder
+    - docker buildx inspect --bootstrap
     - apk --update add jq
 
   retry: 1
