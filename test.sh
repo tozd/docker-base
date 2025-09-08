@@ -5,6 +5,14 @@ commands_and_expected_outputs='
   locale | awk -F= "/LC_COLLATE/{print \$2}" | tr -d \"#en_US.UTF-8
 '
 
+case "$DOCKER_DEFAULT_PLATFORM" in
+  linux/amd64) expected_arch="x86_64" ;;
+  linux/arm64) expected_arch="aarch64" ;;
+  *) echo "Unknown platform $DOCKER_DEFAULT_PLATFORM"; exit 3 ;;
+esac
+
+commands_and_expected_outputs="${commands_and_expected_outputs}uname -m#$expected_arch"
+
 # Split by newline.
 IFS="
 "
