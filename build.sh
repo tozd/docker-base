@@ -3,16 +3,20 @@
 set -e
 
 platforms=""
+platforms_test=""
 if [ -e amd64 ]; then
     [ -n "$platforms" ] && platforms="$platforms,"
     platforms="${platforms}linux/amd64"
+    platforms_test="${platforms_test}linux/amd64"
 fi
 if [ -e arm64 ]; then
     [ -n "$platforms" ] && platforms="$platforms,"
     platforms="${platforms}linux/arm64"
+    platforms_test="${platforms_test}linux/arm64"
 fi
 if [ -n "$platforms" ]; then
     platform_arg="--platform $platforms"
+    platforms_test="linux/amd64"
 else
     platform_arg=""
 fi
@@ -26,7 +30,10 @@ if [ -n "${DOCKER_HUB_PASSWORD}" -a -n "${DOCKER_HUB_USERNAME}" -a "${CI_COMMIT_
 fi
 time docker build $platform_arg --pull ${BUILD_ARGS} -t "${CI_REGISTRY_IMAGE}:${TAG}" -f "${FILE}" .
 if [ -e test.sh ]; then
-  ./test.sh
+  for platform in $platforms_test; do
+    echo "Testing platform $platform"
+    DOCKER_DEFAULT_PLATFORM=$platform ./test.sh
+  done
 fi
 if [ "${CI_COMMIT_REF_NAME}" = master ]; then
   time timeout -k 10s 10m docker push "${CI_REGISTRY_IMAGE}:${TAG}"
