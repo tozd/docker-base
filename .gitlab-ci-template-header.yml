@@ -10,6 +10,7 @@ default:
   before_script:
     - docker info
     - echo "$CI_JOB_TOKEN" | docker login --username gitlab-ci-token --password-stdin "$CI_REGISTRY"
+    - docker run --privileged --rm tonistiigi/binfmt:qemu-v9.2.2 --install arm64
     - apk --update add jq
 
   retry: 1
