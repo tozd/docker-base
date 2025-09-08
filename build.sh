@@ -16,9 +16,9 @@ if [ -e arm64 ]; then
 fi
 if [ -n "$platforms" ]; then
     platform_arg="--platform $platforms"
-    platforms_test="linux/amd64"
 else
     platform_arg=""
+    platforms_test="linux/amd64"
 fi
 
 if [ -n "${DOCKER_HUB_PASSWORD}" -a -n "${DOCKER_HUB_USERNAME}" -a "${CI_COMMIT_REF_NAME}" = master ]; then
