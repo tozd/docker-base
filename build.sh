@@ -4,12 +4,12 @@ set -e
 
 platforms=""
 platforms_test=""
-if [ -e amd64 ]; then
+if [ -e amd64 ] && ! grep -Fxq "$TAG" amd64; then
     [ -n "$platforms" ] && platforms="$platforms,"
     platforms="${platforms}linux/amd64"
     platforms_test="${platforms_test} linux/amd64"
 fi
-if [ -e arm64 ]; then
+if [ -e arm64 ] && ! grep -Fxq "$TAG" arm64; then
     [ -n "$platforms" ] && platforms="$platforms,"
     platforms="${platforms}linux/arm64"
     platforms_test="${platforms_test} linux/arm64"
