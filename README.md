@@ -15,6 +15,7 @@ Available as:
 - `ubuntu-focal`: Ubuntu 20.04 LTS (Focal)
 - `ubuntu-jammy`: Ubuntu 22.04 LTS (Jammy)
 - `ubuntu-noble`: Ubuntu 24.04 LTS (Noble)
+- `ubuntu-resolute`: Ubuntu 26.04 LTS (Resolute)
 - `alpine-38`: Alpine 3.8
 - `alpine-310`: Alpine 3.10
 - `alpine-312`: Alpine 3.12
